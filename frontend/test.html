@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TECHNIA </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$("#submit").click(function (e) {
+				e.preventDefault();
+
+				var label = $("#label").val(),
+					assignees = $("#assignees").val(),
+					instructions = $("#instructions").val();
+
+				$.ajax({
+					type: "POST",
+					url: 'https://gvbzp4nijh.execute-api.us-east-1.amazonaws.com/2ndday/',
+					contentType: 'application/jsonp',
+					data: JSON.stringify({
+						'TaskID': taskid,
+						'label': label,
+						'instructions': instructions
+					}),
+					success: function (res) {
+						$('#form-response').text('working fine');
+					},
+					error: function () {
+						$('#form-response').text('Error.');
+					}
+				});
+
+			})
+
+		});
+	</script>
+</head>
+
+<body>
+
+	<div class="fh5co-loader"></div>
+
+	<div id="page">
+		<nav class="fh5co-nav" role="navigation">
+			<div class="container">
+				<div class="row">
+
+					<div class="logo text-center">
+						<div id="fh5co-logo"><a href="index.html">TECHNIA</a></div>
+					</div>
+
+				</div>
+
+			</div>
+		</nav>
+
+		<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 text-center">
+						<div class="display-t">
+							<div class="display-tc animate-box" data-animate-effect="fadeIn">
+								<h1>TVC</h1>
+								<h2>WORKFLOW </h2>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- <div><a href="#" onclick="showWorkflow()">back to workflow</a></div> -->
+
+		<!-- <a id="s1" href="test.html">Link</a> -->
+		<p />
+		<div id="image_container">
+			<div id="grid_view">
+				<div class="image_in_grid" onclick="showFullImage(1)">
+					<h1>Task1</h1>
+					<img src="img/01.png" />
+				</div>
+				<div class="image_in_grid" onclick="showFullImage(2)">
+					<h1>Task2</h1>
+					<img src="img/02.png" />
+				</div>
+				<div class="image_in_grid" onclick="showFullImage(3)">
+					<h1>Task3</h1>
+					<img src="img/03.png" />
+				</div>
+				<div class="image_in_grid" onclick="showFullImage(4)">
+					<h1>Task4</h1>
+					<img src="img/04.png" />
+				</div>
+			</div>
+		</div>
+		<div>
+
+			<ul id="myList">
+
+			</ul>
+		</div>
+
+
+
+
+		<!-- <div id="fh5co-blog" class="fh5co-bg-section">
+			<div class="container">
+				<div class="row animate-box">
+					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+						<h2>ADD TASK</h2>
+						<form action="#">
+							<div class="row form-group">
+								<div class="col-md-12 form-group">
+									<label for="taskid">Task ID</label>
+									<input id="taskid" class="form-control">
+								</div>
+								<div class="col-md-12 form-group">
+									<label for="label">Label</label>
+									<input id="label" class="form-control">
+								</div>
+								<div class="col-md-12">
+									<label for="assignee">assignees</label>
+									<input id="assignee" class="form-control">
+								</div>
+								
+
+							</div>
+							<div class="form-group">
+								<input id="submit" type="submit" value="Submit" class="btn btn-primary">
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div> -->
+		<div id="form-response"></div>
+		<div id="myList">
+		</div>
+
+		
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	<script>
+		function showFullImage(image) {
+			var image_path = ("img/0" + image + ".png");
+			document.getElementById('image_container').innerHTML = " <h1>Task</h1> " + " <img src = '" + image_path + "' />";
+			console.log(image_path);
+		}
+
+		function showForm() {
+			var a = document.getElementById('s1').click();
+
+		}
+		function showWorkflow() {
+			var content_string = "<div id = 'grid_view'>\
+			<div class = 'image_in_grid' onclick='showFullImage(1)'>\
+			<h1>Task1</h1>\
+			<img src ='img/01.png' />\
+			</div>\
+			<div class = 'image_in_grid' onclick='showFullImage(2)'>\
+				<h1>Task2</h1>\
+			<img src = 'img/02.png' />\
+			</div>\
+			<div class = 'image_in_grid' onclick='showFullImage(3)'>\
+				<h1>Task3</h1>\
+			  <img src = 'img/03.png' />\
+			</div>\
+			<div class = 'image_in_grid' onclick='showFullImage(4)'>\
+				<h1>Task4</h1>\
+			<img src = 'img/04.png' />\
+			</div>\
+			</div>";
+			document.getElementById('image_container').innerHTML = content_string;
+		}
+		var count = 1;
+		function refresh() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("GET", "https://gvbzp4nijh.execute-api.us-east-1.amazonaws.com/test", true);
+			xhttp.send();
+			xhttp.addEventListener("readystatechange", processRequest, false);
+
+			function processRequest(e) {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					var response = JSON.parse(xhttp.responseText);
+					var numberString = response.Workflow;
+
+					if (numberString == 12 ){
+						getTask(numberString);
+						count++;
+					}
+
+					// if (numberString == 10) {
+					// 	showForm();
+					// }
+					if (numberString < 5 && numberString > 0) {
+						showFullImage(numberString);
+					} else {
+						showWorkflow();
+					}
+					console.log(numberString);
+				}
+			}
+			count++;
+			setTimeout(refresh, 1000);
+		}
+		function addTask(property) {
+			var node;
+			if (property == "Updated Task") {
+				node = document.createElement("h1");
+			}
+			else {
+				node = document.createElement("div");
+			}
+			var textnode = document.createTextNode(property);
+			node.appendChild(textnode);
+			document.getElementById("myList").appendChild(node);
+
+
+
+		}
+		function getTask(numberString) {
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("GET", "https://gvbzp4nijh.execute-api.us-east-1.amazonaws.com/2ndday", true);
+			xhttp.send();
+			xhttp.addEventListener("readystatechange", processRequest, false);
+
+			function processRequest(e) {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					var response = JSON.parse(xhttp.responseText);
+
+					for (var i = 0; i < response.length; i++) {
+
+						if (response[i].TaskID == numberString) {
+
+							var TaskID = response[i].TaskID;
+							var label = response[i].label;
+							var assignee = response[i].assignee;
+							addTask("Updated Task");
+							
+							addTask(TaskID);
+							addTask(label);
+							addTask(assignee);
+						}
+					}
+				}
+			}
+
+		}
+
+		refresh();
+	</script>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+
+
+
+</body>
+
+</html>
